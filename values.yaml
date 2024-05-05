@@ -1,0 +1,64 @@
+kubernetes-dashboard:
+  app:
+    image:
+      pullSecrets:
+        - nexus-cred
+
+    ingress:
+      enabled: true
+      hosts:
+        - k8s.homelab.mohamedsaidsallam.work
+      ingressClassName: nginx
+
+  auth:
+    image:
+      repository: nexus-docker.homelab.mohamedsaidsallam.work/kubernetesui/dashboard-auth
+    containers:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits:
+          cpu: 250m
+          memory: 400Mi
+
+  api:
+    image:
+      repository: nexus-docker.homelab.mohamedsaidsallam.work/kubernetesui/dashboard-api
+    containers:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits:
+          cpu: 250m
+          memory: 400Mi
+
+  web:
+    image:
+      repository: nexus-docker.homelab.mohamedsaidsallam.work/kubernetesui/dashboard-web
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits:
+          cpu: 250m
+          memory: 400Mi
+
+  metricsScraper:
+    image:
+      repository: nexus-docker.homelab.mohamedsaidsallam.work/kubernetesui/dashboard-metrics-scraper
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits:
+          cpu: 250m
+          memory: 400Mi
+
+  kong:
+    image:
+      repository: nexus-docker.homelab.mohamedsaidsallam.work/kong
+
+      pullSecrets:
+        - nexus-cred
