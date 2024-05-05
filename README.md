@@ -4,6 +4,8 @@ Wrapper for [kubernetes-dashboard helm chart](https://artifacthub.io/packages/he
 
 ## Run
 
+> Assumes the cluster is using ingress-nginx
+
 ```sh
 helm upgrade --install --create-namespace -n kubernetes-dashboard kubernetes-dashboard . --wait --wait-for-jobs --timeout 3m
 # OR --atomic
